@@ -1,0 +1,14 @@
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.exe
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.deps.json
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.runtimeconfig.json
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.runtimeconfig.dev.json
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.dll
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.pdb
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.csprojAssemblyReference.cache
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.AssemblyInfoInputs.cache
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.AssemblyInfo.cs
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.csproj.CoreCompileInputs.cache
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.dll
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.pdb
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\obj\Debug\netcoreapp3.1\GC_Lab8_GetToKnow.genruntimeconfig.cache
+C:\Users\dude_dude\source\repos\GC_Lab8_GetToKnow\GC_Lab8_GetToKnow\bin\Debug\netcoreapp3.1\StudentData.txt
