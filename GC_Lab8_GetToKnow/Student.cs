@@ -14,10 +14,10 @@ namespace GC_Lab8_GetToKnow
 
         public Student(string FirstName, string LastName, string HomeTown, string FavFood)
         {
-            this.firstName = FirstName;
-            this.lastName = LastName;
-            this.hometown = HomeTown;
-            this.favFood = FavFood;
+            firstName = FirstName;
+            lastName = LastName;
+            hometown = HomeTown;
+            favFood = FavFood;
         }
     }
 }
