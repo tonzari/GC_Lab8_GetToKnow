@@ -7,13 +7,15 @@ namespace GC_Lab8_GetToKnow
 {
     class Program
     {
+        // Grand Circus Lab 8 - Get to know your classmates
+        // Antonio Manzari
+
         public static string studentDataRawText;
         public static List<string> studentListUnparsed;
         public static List<Student> studentList;
 
         public static string userInput;
         public static int userNumber;
-
         public static bool userWantsToContinue = false;
 
         static void Main(string[] args)
@@ -34,28 +36,33 @@ namespace GC_Lab8_GetToKnow
         #region METHODS
         private static void GetToKnowStudents()
         {
+            // Choose student
             Console.WriteLine("Which student would you like to learn more about? (enter a number 1-12)");
-
             userNumber = GetAndValidateUserNumber() - 1;
-
             Student student = studentList[userNumber];
+            Console.WriteLine(Environment.NewLine);
 
+
+            // Reveal student, ask what user would like to know
             Console.WriteLine($"Student {userNumber + 1} is {student.firstName} {student.lastName}. What would you like to know about {student.firstName}? (enter “hometown” or “favorite food”)");
-
             userInput = GetAndValidateUserStringInput("hometown", "favorite food");
+            Console.WriteLine(Environment.NewLine);
 
+
+            // Provide appropriate data per user's request, ask to contine
             if (userInput.Equals("hometown"))
             {
                 Console.WriteLine($"{student.firstName} is from {student.hometown}. Would you like to know more? (Enter “yes” or “no”) ");
             }
-
             if (userInput.Equals("favorite food"))
             {
                 Console.WriteLine($"{student.firstName}'s favorite food is {student.favFood}. YUM! Would you like to know more? (Enter “yes” or “no”)");
             }
-
             userInput = GetAndValidateUserStringInput("yes", "no");
+            Console.WriteLine(Environment.NewLine);
 
+
+            // Restart or quit app per user's request
             if (userInput.Equals("yes"))
             {
                 userWantsToContinue = true;
