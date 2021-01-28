@@ -18,12 +18,15 @@ namespace GC_Lab8_GetToKnow
         public static int userNumber;
         public static bool userWantsToContinue = false;
 
+        //temp hack
+        public static bool dataFileFound = false;
+
         static void Main(string[] args)
         {
             InitializeData();
 
             Console.WriteLine("Welcome to our C# class!");
-            
+
             do
             {
                 GetToKnowStudents();
@@ -80,7 +83,7 @@ namespace GC_Lab8_GetToKnow
             studentList = GenerateStudentsInList(studentListUnparsed);
         }
 
-        public static List<Student> GenerateStudentsInList (List<string> unparsedList)
+        public static List<Student> GenerateStudentsInList(List<string> unparsedList)
         {
             List<Student> studentList = new List<Student>();
 
@@ -101,7 +104,17 @@ namespace GC_Lab8_GetToKnow
 
         public static List<string> PopulateListLineByLine(string data)
         {
-            string[] singleLines = data.Split(new[] { Environment.NewLine}, StringSplitOptions.None);
+            string[] singleLines;
+
+            if (dataFileFound)
+            {
+                singleLines = data.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            }
+            else
+            {
+                singleLines = data.Split(new[] { "\n" }, StringSplitOptions.None);
+            }
+
 
             return singleLines.ToList();
         }
@@ -111,7 +124,33 @@ namespace GC_Lab8_GetToKnow
             string fileName = "StudentData.txt";
             string path = Path.Combine(Environment.CurrentDirectory, fileName);
 
-            return File.ReadAllText(path);
+            // Cheap hack because i bit off more than i could chew with this file path craziness.
+            // It works just fine on my main repo, but if i clone the repo, the cloned will NOT find the right file path :(
+            // I ended up spending hours on this I have to give up...
+
+            if (File.Exists(path))
+            {
+                dataFileFound = true; // temp hack
+                return File.ReadAllText(path);
+            }
+            else
+            {
+                dataFileFound = false; // temp hack
+
+                return
+                    @"Ramon / Guarnes / Tigard, OR / Burgers
+                    Antonio / Manzari / Beverly Hills, MI / Focaccia Barese
+                    Joshua / Carolin / Novi, MI / Naleśniki
+                    Nick / D'Oria / Canton, MI / Tacos
+                    Jeremiah / Wyeth / Crystal, MI / Burgers
+                    Wendi / Magee / Detroit, MI / Salami
+                    Juliana / NoLastNameSorry / Denver, CO / Tacos
+                    Nathaniel / Davis / Berkley, MI / Steak
+                    Tommy  /Waalkes / Raleigh, NC / Chicken Curry
+                    Grace  /Symore / Mesa, AZ / Sweet Potato Fries
+                    Jeffrey / Wohlfield / Detroit, MI / Steak
+                    Josh  /Gallentine / Baldwin, MI / Falafel";
+            }
         }
 
         public static int GetAndValidateUserNumber()
