@@ -7,15 +7,17 @@ namespace GC_Lab8_GetToKnow
     public class Student
     {
         //int id;
-        public string fullName;
+        public string firstName;
+        public string lastName;
         public string hometown;
         public string favFood;
 
-        public Student(string name, string hometowm, string favFood)
+        public Student(string FirstName, string LastName, string HomeTown, string FavFood)
         {
-            fullName = name;
-            this.hometown = hometown;
-            this.favFood = favFood;
+            this.firstName = FirstName;
+            this.lastName = LastName;
+            this.hometown = HomeTown;
+            this.favFood = FavFood;
         }
     }
 }
