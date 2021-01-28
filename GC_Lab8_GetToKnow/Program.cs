@@ -14,29 +14,56 @@ namespace GC_Lab8_GetToKnow
         public static string userInput;
         public static int userNumber;
 
+        public static bool userWantsToContinue = false;
+
         static void Main(string[] args)
         {
-            
-
             InitializeData();
 
-            RunTestPrintAllStudentData(studentList);
-
-            Console.WriteLine("Welcome to our C# class. Which student would you like to learn more about? (enter a number 1-12): ");
-
-            userNumber = GetAndValidateUserNumber();
-
-            Console.WriteLine($"Student {userNumber} is {studentList[userNumber]}. What would you like to know about {studentList[userNumber]}? (enter “hometown” or“favorite food”):");
-
-
+            Console.WriteLine("Welcome to our C# class!");
             
-            Console.WriteLine("That data does not exist. Please try again. (enter “hometown” or “favorite food”): ");
-            Console.WriteLine("Kim is from Detroit, MI. Would you like to know more? (enter “yes” or “no”): ");
-            
+            do
+            {
+                GetToKnowStudents();
 
-
+            } while (userWantsToContinue);
 
             ExitApp();
+        }
+
+        #region METHODS
+        private static void GetToKnowStudents()
+        {
+            Console.WriteLine("Which student would you like to learn more about? (enter a number 1-12)");
+
+            userNumber = GetAndValidateUserNumber() - 1;
+
+            Student student = studentList[userNumber];
+
+            Console.WriteLine($"Student {userNumber + 1} is {student.firstName} {student.lastName}. What would you like to know about {student.firstName}? (enter “hometown” or “favorite food”)");
+
+            userInput = GetAndValidateUserStringInput("hometown", "favorite food");
+
+            if (userInput.Equals("hometown"))
+            {
+                Console.WriteLine($"{student.firstName} is from {student.hometown}. Would you like to know more? (Enter “yes” or “no”) ");
+            }
+
+            if (userInput.Equals("favorite food"))
+            {
+                Console.WriteLine($"{student.firstName}'s favorite food is {student.favFood}. YUM! Would you like to know more? (Enter “yes” or “no”)");
+            }
+
+            userInput = GetAndValidateUserStringInput("yes", "no");
+
+            if (userInput.Equals("yes"))
+            {
+                userWantsToContinue = true;
+            }
+            else if (userInput.Equals("no"))
+            {
+                userWantsToContinue = false;
+            }
         }
 
         private static void InitializeData()
@@ -57,7 +84,6 @@ namespace GC_Lab8_GetToKnow
                 for (int i = 0; i < data.Length; i++)
                 {
                     data[i] = data[i].Trim();
-                    Console.WriteLine(i + " " + data[i]);
                 }
 
                 studentList.Add(new Student(data[0], data[1], data[2], data[3]));
@@ -104,14 +130,39 @@ namespace GC_Lab8_GetToKnow
             }
         }
 
+        public static string GetAndValidateUserStringInput(string response1, string response2)
+        {
+            userInput = Console.ReadLine().ToLower();
+            try
+            {
+                if (userInput.Equals(response1) || userInput.Equals(response2))
+                {
+                    //good
+                    return userInput;
+                }
+                else
+                {
+                    throw new Exception($"Invalid response. Please try again. (enter “{response1}” or “{response2}”): ");
+                }
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e.Message);
+                return GetAndValidateUserStringInput(response1, response2);
+            }
+        }
+
         public static void ExitApp()
         {
             Console.WriteLine("Thanks!");
             Console.WriteLine("Exiting application...");
         }
 
+        #endregion
+
         #region TESTS
-       
+
         private static void RunTestPrintAllStudentData(List<Student> studentList)
         {
             foreach (Student s in studentList)
