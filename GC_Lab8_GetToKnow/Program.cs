@@ -10,7 +10,6 @@ namespace GC_Lab8_GetToKnow
         // Grand Circus Lab 8 - Get to know your classmates
         // Antonio Manzari
 
-        public static string studentDataRawText;
         public static List<string> studentListUnparsed;
         public static List<Student> studentList;
 
@@ -18,14 +17,11 @@ namespace GC_Lab8_GetToKnow
         public static int userNumber;
         public static bool userWantsToContinue = false;
 
-        //temp hack
-        public static bool dataFileFound = false;
-
         static void Main(string[] args)
         {
             InitializeData();
 
-            Console.WriteLine("Welcome to our C# class!");
+            Console.WriteLine("Welcome to our lovely C# class!");
 
             do
             {
@@ -40,8 +36,8 @@ namespace GC_Lab8_GetToKnow
         private static void GetToKnowStudents()
         {
             // Choose student by number
-            Console.WriteLine("Which student would you like to learn more about? (enter a number 1-12)");
-            userNumber = GetAndValidateUserNumber() - 1;
+            Console.WriteLine("Which student would you like to learn more about? (Enter their first name or enter a number 1-12)");
+            userNumber = ProcessStudentSearchInput();
             Student student = studentList[userNumber];
             Console.WriteLine(Environment.NewLine);
 
@@ -52,7 +48,7 @@ namespace GC_Lab8_GetToKnow
             Console.WriteLine(Environment.NewLine);
 
 
-            // Provide appropriate data per user's request, ask to contine
+            // Provide appropriate data per user's request, and ask to contine
             if (userInput.Equals("hometown"))
             {
                 Console.WriteLine($"{student.firstName} is from {student.hometown}. Would you like to know more? (Enter “yes” or “no”) ");
@@ -76,7 +72,45 @@ namespace GC_Lab8_GetToKnow
             }
         }
 
-        private static void InitializeData()
+        public static int SearchByFirstName(string firstName)
+        {
+            for (int i = 0; i < studentList.Count; i++)
+            {
+                if (firstName.Equals(studentList[i].firstName.ToLower()))
+                {
+                    return i;
+                }
+            }
+
+            Console.WriteLine("Sorry, we couldn't find a student with that first name. Try again. (Enter their first name or enter a number 1-12)");
+
+            return ProcessStudentSearchInput();
+        }
+
+        public static int ProcessStudentSearchInput()
+        {
+            userInput = Console.ReadLine().ToLower();
+            bool inputIsNumber = false;
+
+            foreach (char c in userInput)
+            {
+                if (Char.IsNumber(c))
+                {
+                    inputIsNumber = true;
+                }
+            }
+
+            if (inputIsNumber)
+            {
+                return ValidateUserNumber() - 1;
+            }
+            else
+            {
+                return SearchByFirstName(userInput);
+            }
+        }
+
+        public static void InitializeData()
         {
             studentListUnparsed = GetStudentDataAndStoreInList();
             studentList = GenerateStudentsInList(studentListUnparsed);
@@ -108,9 +142,8 @@ namespace GC_Lab8_GetToKnow
             return File.ReadAllLines(path).ToList();
         }
 
-        public static int GetAndValidateUserNumber()
+        public static int ValidateUserNumber()
         {
-            userInput = Console.ReadLine();
             try
             {
                 if (Int32.TryParse(userInput, out int userNumber) && userNumber >= 1 && userNumber <= 12)
@@ -127,7 +160,7 @@ namespace GC_Lab8_GetToKnow
             {
 
                 Console.WriteLine(e.Message);
-                return GetAndValidateUserNumber();
+                return ProcessStudentSearchInput();
             }
         }
 
@@ -148,7 +181,6 @@ namespace GC_Lab8_GetToKnow
             }
             catch (Exception e)
             {
-
                 Console.WriteLine(e.Message);
                 return GetAndValidateUserStringInput(response1, response2);
             }
@@ -156,7 +188,7 @@ namespace GC_Lab8_GetToKnow
 
         public static void ExitApp()
         {
-            Console.WriteLine("Thanks!");
+            Console.WriteLine("Thanks! It was nice getting to know us.");
             Console.WriteLine("Exiting application...");
         }
 
